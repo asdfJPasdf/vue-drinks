@@ -1,7 +1,7 @@
 <template>
 
-<div style="position:absolute; top:0px; right:0px;" >
-       <input type="text" placeholder="Suche..." class="form-control-sm" v-model="inputName" >
+<div  >
+       <input type="text" placeholder="Suche..." class="form-control-sm" v-model="inputName"  @keyup.enter="created">
         <br> 
     </div> 
 
@@ -10,6 +10,7 @@
   :image="image"
   :name="name"
   :ingredients="ingredients"
+  
   />
 </template>
 
@@ -25,24 +26,39 @@ export default {
   },
   data() {
     return {
+      id:0,
       description: "",
       image: "",
       name:"",
-      ingredients: "",
-      inputName:"",  
-      data:[],
+      ingredients: [],
+     inputName:"",  
+      infos:[],
     }
   },
-  async created(inputName) {
+  async created() {
     try {
-      const resCategories = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${inputName}`);
-      this.categories = resCategories.data;
+      
+      const resInfos = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${this.inputName}`);
+      this.infos = resInfos.data;
     } catch (error) {
       console.log(error);
     }
+    console.log(this.infos['drinks'][0]['strDrinkThumb']);
+    this.name=this.infos['drinks'][0]['strDrink'];
+    this.description=this.infos['drinks'][0]['strInstructionsDE'];
+    this.image=this.infos['drinks'][0]['strDrinkThumb'];
+    do{
+      let x= 1;
+      var notEmpty=true;
+     if(this.infos['drinks'][0][`strIngredient${x}`])
+    
+    
+    }while (notEmpty)
+
   },
-methods:
-{
+  
+methodes:{
+
 
 }
 }

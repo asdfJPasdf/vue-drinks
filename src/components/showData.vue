@@ -1,6 +1,7 @@
 <template>
   <div class="card" style="width: 18rem;">
-  <img class="card-img-top" src= {{image}} alt="Card image cap">
+  <img v-if="image" class="card-img-top" :src="image" :alt="name">
+  <img v-else class="card-img-top" src="../assets/kein_bild.jpg" alt="Kein Bild">
   <div class="card-body">
     <h5 class="card-title">{{name}}</h5>
     <p class="card-text">{{description}}</p>
