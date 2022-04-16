@@ -7,7 +7,7 @@
     <p class="card-text">{{description}}</p>
   </div>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item">{{ingredients}}</li>
+    <li class="list-group-item">{{ingredients.join}}</li>
     <li class="list-group-item"></li>
     <li class="list-group-item"></li>
   </ul>
@@ -36,7 +36,7 @@ export default {
         
         },
         ingredients:{
-            type: String,
+            type: Array,
             require:false,
 
         }

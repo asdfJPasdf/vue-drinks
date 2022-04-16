@@ -10,7 +10,7 @@
   :image="image"
   :name="name"
   :ingredients="ingredients"
-  
+
   />
 </template>
 
@@ -50,7 +50,11 @@ export default {
     do{
       let x= 1;
       var notEmpty=true;
-     if(this.infos['drinks'][0][`strIngredient${x}`])
+     if(this.infos['drinks'][0][`strIngredient${x}`]!=null){
+       this.ingredients.push(this.infos['drinks'][0][`strIngredient${x}`]);
+      x++;
+     }
+     else {notEmpty=false;}
     
     
     }while (notEmpty)
